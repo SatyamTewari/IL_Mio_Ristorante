@@ -13,18 +13,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.ilmioristorante.model.unsplash.UnsplashImage
-import com.example.ilmioristorante.model.unsplash.Urls
-import com.example.ilmioristorante.model.unsplash.User
-import com.example.ilmioristorante.model.unsplash.UserLinks
 import com.example.ilmioristorante.presentation.screens.common.ButtonComponent
 import com.example.ilmioristorante.presentation.screens.common.NormalTextComponent
 import com.example.ilmioristorante.presentation.screens.common.SmallTextComponent
-import com.example.ilmioristorante.presentation.screens.common.UnsplashItem
-import com.example.ilmioristorante.presentation.screens.login.LoginUIEvent
+import com.example.ilmioristorante.presentation.screens.common.RestaurantItem
 import com.example.ilmioristorante.presentation.viewmodels.DetailVIewModel
 import com.example.ilmioristorante.util.Screen
 
@@ -38,7 +32,7 @@ fun DetailScreen(
 
     LaunchedEffect(key1 = Unit) {
         detailVIewModel.setDefaultDetailUiState(id)
-        detailVIewModel.getUnsplashItem(id)
+        detailVIewModel.getRestaurantItem(id)
         detailVIewModel.getReview(id)
     }
 
@@ -48,7 +42,7 @@ fun DetailScreen(
             modifier = Modifier.padding(it)
         ) {
             Spacer(modifier = Modifier.height(20.dp))
-            UnsplashItem(
+            RestaurantItem(
                 detailUiState.value.data,
                 source = Screen.Detail,
                 onThumbsDownClicked = {

@@ -5,25 +5,25 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.example.ilmioristorante.data.local.UnsplashDatabase
-import com.example.ilmioristorante.data.remote.UnsplashApi
-import com.example.ilmioristorante.model.unsplash.UnsplashImage
-import com.example.ilmioristorante.model.remoteKeys.UnsplashRemoteKeys
+import com.example.ilmioristorante.data.local.RestaurantDatabase
+import com.example.ilmioristorante.data.remote.RestaurantApi
+import com.example.ilmioristorante.model.restaurant.RestaurantModel
+import com.example.ilmioristorante.model.remoteKeys.RestaurantRemoteKeys
 import com.example.ilmioristorante.util.Constants.ITEMS_PER_PAGE
 
 @ExperimentalPagingApi
-class UnsplashRemoteMediator(
-    private val unsplashApi: UnsplashApi,
-    private val unsplashDatabase: UnsplashDatabase,
+class RestaurantRemoteMediator(
+    private val restaurantApi: RestaurantApi,
+    private val restaurantDatabase: RestaurantDatabase,
     private val query: String,
-) : RemoteMediator<Int, UnsplashImage>() {
+) : RemoteMediator<Int, RestaurantModel>() {
 
-    private val unsplashImageDao = unsplashDatabase.unsplashImageDao()
-    private val unsplashRemoteKeysDao = unsplashDatabase.unsplashRemoteKeysDao()
+    private val restaurantDao = restaurantDatabase.restaurantDao()
+    private val restaurantRemoteKeysDao = restaurantDatabase.restaurantRemoteKeysDao()
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, UnsplashImage>
+        state: PagingState<Int, RestaurantModel>
     ): MediatorResult {
         return try {
             val currentPage = when (loadType) {
@@ -51,7 +51,7 @@ class UnsplashRemoteMediator(
                 }
             }
 
-            val response = unsplashApi.searchImages(
+            val response = restaurantApi.searchImages(
                 query = query,
                 page = currentPage,
                 perPage = ITEMS_PER_PAGE
@@ -61,27 +61,27 @@ class UnsplashRemoteMediator(
             val prevPage = if (currentPage == 1) null else currentPage - 1
             val nextPage = if (endOfPaginationReached) null else currentPage + 1
 
-            unsplashDatabase.withTransaction {
+            restaurantDatabase.withTransaction {
 
-                val keys = response.images.map { unsplashImage ->
-                    UnsplashRemoteKeys(
-                        id = unsplashImage.id,
+                val keys = response.images.map {  restaurant ->
+                    RestaurantRemoteKeys(
+                        id = restaurant.id,
                         prevPage = prevPage,
                         nextPage = nextPage
                     )
                 }
 
-                val images = response.images.map { unsplashImage ->
-                    UnsplashImage(
-                        id = unsplashImage.id,
-                        urls = unsplashImage.urls,
-                        user = unsplashImage.user,
+                val images = response.images.map { restaurant ->
+                    RestaurantModel(
+                        id = restaurant.id,
+                        urls = restaurant.urls,
+                        user = restaurant.user,
                         query = query
                     )
                 }
 
-                unsplashRemoteKeysDao.addAllRemoteKeys(remoteKeys = keys)
-                unsplashImageDao.addImages(images = images)
+                restaurantRemoteKeysDao.addAllRemoteKeys(remoteKeys = keys)
+                restaurantDao.addImages(images = images)
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Exception) {
@@ -90,30 +90,30 @@ class UnsplashRemoteMediator(
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
-        state: PagingState<Int, UnsplashImage>
-    ): UnsplashRemoteKeys? {
+        state: PagingState<Int, RestaurantModel>
+    ): RestaurantRemoteKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
-                unsplashRemoteKeysDao.getRemoteKeys(id = id)
+                restaurantRemoteKeysDao.getRemoteKeys(id = id)
             }
         }
     }
 
     private suspend fun getRemoteKeyForFirstItem(
-        state: PagingState<Int, UnsplashImage>
-    ): UnsplashRemoteKeys? {
+        state: PagingState<Int, RestaurantModel>
+    ): RestaurantRemoteKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
-            ?.let { unsplashImage ->
-                unsplashRemoteKeysDao.getRemoteKeys(id = unsplashImage.id)
+            ?.let { restaurant ->
+                restaurantRemoteKeysDao.getRemoteKeys(id = restaurant.id)
             }
     }
 
     private suspend fun getRemoteKeyForLastItem(
-        state: PagingState<Int, UnsplashImage>
-    ): UnsplashRemoteKeys? {
+        state: PagingState<Int, RestaurantModel>
+    ): RestaurantRemoteKeys? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
-            ?.let { unsplashImage ->
-                unsplashRemoteKeysDao.getRemoteKeys(id = unsplashImage.id)
+            ?.let { restaurant ->
+                restaurantRemoteKeysDao.getRemoteKeys(id = restaurant.id)
             }
     }
 }

@@ -1,14 +1,14 @@
-package com.example.ilmioristorante.model.unsplash
+package com.example.ilmioristorante.model.restaurant
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.ilmioristorante.util.Constants.UNSPLASHED_IMAGE_TABLE
+import com.example.ilmioristorante.util.Constants.RESTAURANTS_TABLE
 import kotlinx.serialization.Serializable
 
 @Serializable
-@Entity(tableName = UNSPLASHED_IMAGE_TABLE)
-data class UnsplashImage(
+@Entity(tableName = RESTAURANTS_TABLE)
+data class RestaurantModel(
     @PrimaryKey(autoGenerate = false)
     val id: String,
     @Embedded

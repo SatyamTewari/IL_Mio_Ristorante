@@ -9,14 +9,14 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import coil.annotation.ExperimentalCoilApi
-import com.example.ilmioristorante.model.unsplash.UnsplashImage
+import com.example.ilmioristorante.model.restaurant.RestaurantModel
 import com.example.ilmioristorante.util.Screen
 
 @ExperimentalCoilApi
 @Composable
 fun ListContent(
     source: Screen,
-    lazyPagingItems: LazyPagingItems<UnsplashImage>,
+    lazyPagingItems: LazyPagingItems<RestaurantModel>,
     onItemClicked: ((id: String) -> Unit)
 ) {
     LazyColumn(
@@ -29,7 +29,7 @@ fun ListContent(
             key = lazyPagingItems.itemKey { it.id },
             contentType = lazyPagingItems.itemContentType { null }
         ) { index ->
-            lazyPagingItems[index]?.let { UnsplashItem(unsplashImage = it, source = source, onItemClicked) }
+            lazyPagingItems[index]?.let { RestaurantItem(restaurant = it, source = source, onItemClicked) }
         }
     }
 }

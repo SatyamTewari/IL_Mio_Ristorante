@@ -68,7 +68,6 @@ fun MyTextFieldComponent(
     val textValue = remember {
         mutableStateOf("")
     }
-    val localFocusManager = LocalFocusManager.current
 
     OutlinedTextField(
         modifier = Modifier
@@ -137,25 +136,6 @@ fun PasswordTextFieldComponent(
         },
         leadingIcon = {
             Icon(painter = painterResource, contentDescription = "")
-        },
-        trailingIcon = {
-
-//            val iconImage = if (passwordVisible.value) {
-//                Icons.Filled.Visibility
-//            } else {
-//                Icons.Filled.VisibilityOff
-//            }
-
-//            val description = if (passwordVisible.value) {
-//                stringResource(id = R.string.hide_password)
-//            } else {
-//                stringResource(id = R.string.show_password)
-//            }
-
-//            IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
-//                Icon(imageVector = iconImage, contentDescription = description)
-//            }
-
         },
         visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
         isError = errorStatus
@@ -290,42 +270,4 @@ fun UnderLinedTextComponent(value: String) {
         textDecoration = TextDecoration.Underline
     )
 
-}
-
-@ExperimentalMaterial3Api
-@Composable
-fun AppToolbar(
-    toolbarTitle: String, logoutButtonClicked: () -> Unit,
-    navigationIconClicked: () -> Unit
-) {
-
-    TopAppBar(
-        title = {
-            Text(
-                text = toolbarTitle, color = WhiteColor
-            )
-        },
-        navigationIcon = {
-            IconButton(onClick = {
-                navigationIconClicked.invoke()
-            }) {
-                Icon(
-                    imageVector = Icons.Filled.Menu,
-                    contentDescription = "Menu",
-                    tint = WhiteColor
-                )
-            }
-
-        },
-        actions = {
-            IconButton(onClick = {
-                logoutButtonClicked.invoke()
-            }) {
-                Icon(
-                    imageVector = Icons.Filled.Close,
-                    contentDescription = "logout",
-                )
-            }
-        }
-    )
 }

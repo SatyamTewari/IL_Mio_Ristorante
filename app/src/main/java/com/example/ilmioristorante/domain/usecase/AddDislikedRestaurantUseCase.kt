@@ -1,7 +1,7 @@
 package com.example.ilmioristorante.domain.usecase
 
 import com.example.ilmioristorante.domain.Repository
-import com.example.ilmioristorante.model.unsplash.DislikedRestaurants
+import com.example.ilmioristorante.model.restaurant.DislikedRestaurants
 import javax.inject.Inject
 
 class AddDislikedRestaurantUseCase @Inject constructor(

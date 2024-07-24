@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.model.unsplash
+package com.example.ilmioristorante.model.restaurant
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

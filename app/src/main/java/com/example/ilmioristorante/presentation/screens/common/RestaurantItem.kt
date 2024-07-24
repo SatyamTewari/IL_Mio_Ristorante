@@ -37,18 +37,18 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.ilmioristorante.R
-import com.example.ilmioristorante.model.unsplash.UnsplashImage
-import com.example.ilmioristorante.model.unsplash.Urls
-import com.example.ilmioristorante.model.unsplash.User
-import com.example.ilmioristorante.model.unsplash.UserLinks
+import com.example.ilmioristorante.model.restaurant.RestaurantModel
+import com.example.ilmioristorante.model.restaurant.Urls
+import com.example.ilmioristorante.model.restaurant.User
+import com.example.ilmioristorante.model.restaurant.UserLinks
 import com.example.ilmioristorante.ui.theme.BlueColor
 import com.example.ilmioristorante.ui.theme.WhiteColor
 import com.example.ilmioristorante.util.Screen
 
 @ExperimentalCoilApi
 @Composable
-fun UnsplashItem(
-    unsplashImage: UnsplashImage?,
+fun RestaurantItem(
+    restaurant: RestaurantModel?,
     source: Screen,
     onItemClicked: ((id: String) -> Unit) = {},
     onThumbsDownClicked: (() -> Unit) = {},
@@ -60,13 +60,13 @@ fun UnsplashItem(
             .clickable {
                 when (source) {
                     is Screen.Home, is Screen.Search -> {
-                        onItemClicked.invoke(unsplashImage?.id ?: "")
+                        onItemClicked.invoke(restaurant?.id ?: "")
                     }
 
                     else -> {
                         val browserIntent = Intent(
                             Intent.ACTION_VIEW,
-                            Uri.parse("https://unsplash.com/@${unsplashImage?.user?.username}?utm_source=DemoApp&utm_medium=referral")
+                            Uri.parse("https://unsplash.com/@${restaurant?.user?.username}?utm_source=DemoApp&utm_medium=referral")
                         )
                         startActivity(context, browserIntent, null)
                     }
@@ -78,12 +78,12 @@ fun UnsplashItem(
     ) {
         AsyncImage(
             model = ImageRequest.Builder(context)
-                .data(unsplashImage?.urls?.regular)
+                .data(restaurant?.urls?.regular)
                 .crossfade(true)
                 .build(),
             placeholder = painterResource(id = R.drawable.ic_placeholder),
             error = painterResource(id = R.drawable.ic_placeholder),
-            contentDescription = "Unsplash Image",
+            contentDescription = "Restaurant",
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
@@ -105,7 +105,7 @@ fun UnsplashItem(
                 text = buildAnnotatedString {
                     append("Photo by ")
                     withStyle(style = SpanStyle(fontWeight = FontWeight.Black)) {
-                        append(unsplashImage?.user?.username)
+                        append(restaurant?.user?.username)
                     }
                 },
                 style = MaterialTheme.typography.bodyMedium,
@@ -145,9 +145,9 @@ fun UnsplashItem(
 @ExperimentalCoilApi
 @Composable
 @Preview
-fun UnsplashImagePreview() {
-    UnsplashItem(
-        unsplashImage = UnsplashImage(
+fun RestaurantItemPreview() {
+    RestaurantItem(
+        restaurant = RestaurantModel(
             id = "1",
             urls = Urls(regular = ""),
             user = User(username = "Satyam Tewari", userLinks = UserLinks(html = ""))

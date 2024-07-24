@@ -8,12 +8,9 @@ import com.example.ilmioristorante.domain.usecase.AddDislikedRestaurantUseCase
 import com.example.ilmioristorante.domain.usecase.AddUserReviewUseCase
 import com.example.ilmioristorante.domain.usecase.DeleteDislikedRestaurantUseCase
 import com.example.ilmioristorante.domain.usecase.GetReviewUseCase
-import com.example.ilmioristorante.domain.usecase.GetUnsplashImageItemById
-import com.example.ilmioristorante.model.reviews.UserReviews
-import com.example.ilmioristorante.model.unsplash.UnsplashImage
+import com.example.ilmioristorante.domain.usecase.GetRestaurantItemByIdUseCase
 import com.example.ilmioristorante.presentation.screens.detail.DetailUiEvent
 import com.example.ilmioristorante.presentation.screens.detail.DetailUiState
-import com.example.ilmioristorante.presentation.screens.login.LoginUIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailVIewModel @Inject constructor(
     private val getReviewUseCase: GetReviewUseCase,
-    private val getUnsplashImageItemById: GetUnsplashImageItemById,
+    private val getRestaurantItemByIdUseCase: GetRestaurantItemByIdUseCase,
     private val addUserReviewUseCase: AddUserReviewUseCase,
     private val addDislikedRestaurantUseCase: AddDislikedRestaurantUseCase,
     private val deleteDislikedRestaurantUseCase: DeleteDislikedRestaurantUseCase
@@ -56,9 +53,9 @@ class DetailVIewModel @Inject constructor(
         }
     }
 
-    fun getUnsplashItem(id: String) {
+    fun getRestaurantItem(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = getUnsplashImageItemById.getImageItemById(id)
+            val response = getRestaurantItemByIdUseCase.getRestaurantItemById(id)
             _detailUiState.value = detailUiState.value.copy(
                 data = response
             )

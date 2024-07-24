@@ -1,13 +1,12 @@
 package com.example.ilmioristorante.data.remote
 
 import com.example.ilmioristorante.BuildConfig
-import com.example.ilmioristorante.model.unsplash.SearchResults
-import com.example.ilmioristorante.model.unsplash.UnsplashImage
+import com.example.ilmioristorante.model.restaurant.SearchResults
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
-interface UnsplashApi {
+interface RestaurantApi {
 
     /** not using anymore but api support added for future use-case */
 //    @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
@@ -15,7 +14,7 @@ interface UnsplashApi {
 //    suspend fun getAllImages(
 //        @Query("page") page: Int,
 //        @Query("per_page") perPage: Int
-//    ): List<UnsplashImage>
+//    ): List<RestaurantModel>
 
     @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
     @GET("/search/photos")

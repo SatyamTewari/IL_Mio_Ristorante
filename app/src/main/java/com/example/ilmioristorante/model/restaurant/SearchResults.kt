@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.model.unsplash
+package com.example.ilmioristorante.model.restaurant
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SearchResults(
     @SerialName("results")
-    val images: List<UnsplashImage>
+    val images: List<RestaurantModel>
 )

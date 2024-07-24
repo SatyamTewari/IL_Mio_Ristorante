@@ -2,8 +2,8 @@ package com.example.ilmioristorante.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.ilmioristorante.data.local.UnsplashDatabase
-import com.example.ilmioristorante.util.Constants.UNSPLASH_DATABASE
+import com.example.ilmioristorante.data.local.RestaurantDatabase
+import com.example.ilmioristorante.util.Constants.RESTAURANT_DATABASE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,11 +19,11 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
-    ): UnsplashDatabase {
+    ): RestaurantDatabase {
         return Room.databaseBuilder(
             context,
-            UnsplashDatabase::class.java,
-            UNSPLASH_DATABASE
+            RestaurantDatabase::class.java,
+            RESTAURANT_DATABASE
         ).build()
     }
 }

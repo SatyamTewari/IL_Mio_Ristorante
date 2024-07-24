@@ -1,8 +1,6 @@
 package com.example.ilmioristorante.domain.usecase
 
 import com.example.ilmioristorante.domain.Repository
-import com.example.ilmioristorante.model.reviews.UserReviews
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class GetReviewUseCase @Inject constructor(

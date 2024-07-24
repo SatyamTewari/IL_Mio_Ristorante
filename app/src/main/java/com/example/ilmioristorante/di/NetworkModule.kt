@@ -1,6 +1,6 @@
 package com.example.ilmioristorante.di
 
-import com.example.ilmioristorante.data.remote.UnsplashApi
+import com.example.ilmioristorante.data.remote.RestaurantApi
 import com.example.ilmioristorante.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -44,7 +44,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideUnsplashApi(retrofit: Retrofit): UnsplashApi {
-        return retrofit.create(UnsplashApi::class.java)
+    fun provideRestaurantApi(retrofit: Retrofit): RestaurantApi {
+        return retrofit.create(RestaurantApi::class.java)
     }
 }

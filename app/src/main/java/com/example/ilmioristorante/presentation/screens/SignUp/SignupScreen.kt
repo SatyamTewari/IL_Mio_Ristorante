@@ -32,13 +32,15 @@ import com.example.ilmioristorante.presentation.viewmodels.SignupViewModel
 @Composable
 fun SignUpScreen(
     navController: NavHostController,
-    signupViewModel: SignupViewModel = hiltViewModel())
-{
+    signupViewModel: SignupViewModel = hiltViewModel()
+) {
 
     val signupStatus = signupViewModel.isUserSignupSuccess
     LaunchedEffect(signupStatus.value) {
-        if(signupStatus.value > 0){
-            navController.navigate(Screen.Home.route)
+        if (signupStatus.value > 0) {
+            navController.navigate(Screen.Home.route) {
+                popUpTo(Screen.Signup.route) { inclusive = true }
+            }
         }
     }
 
@@ -110,7 +112,9 @@ fun SignUpScreen(
                 DividerTextComponent()
 
                 ClickableLoginTextComponent(tryingToLogin = true, onTextSelected = {
-                    navController.popBackStack()
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(Screen.Signup.route) { inclusive = true }
+                    }
                 })
             }
 

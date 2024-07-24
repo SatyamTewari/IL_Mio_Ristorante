@@ -38,7 +38,9 @@ fun LoginScreen(
     val userDetails = loginViewModel.isUserLoginSuccess
     LaunchedEffect(userDetails.value) {
         if(userDetails.value != null){
-            navController.navigate(Screen.Home.route)
+            navController.navigate(Screen.Home.route){
+                popUpTo(Screen.Login.route){ inclusive = true}
+            }
         }
     }
     Box(
@@ -98,7 +100,9 @@ fun LoginScreen(
                 DividerTextComponent()
 
                 ClickableLoginTextComponent(tryingToLogin = false, onTextSelected = {
-                    navController.navigate(Screen.Signup.route)
+                    navController.navigate(Screen.Signup.route){
+                        popUpTo(Screen.Login.route){ inclusive = true}
+                    }
                 })
             }
         }
