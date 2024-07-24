@@ -1,6 +1,5 @@
 package com.example.ilmioristorante.screens.common
 
-
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
@@ -46,7 +45,6 @@ fun ListContent(lazyPagingItems: LazyPagingItems<UnsplashImage>) {
         contentPadding = PaddingValues(all = 12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        // items(LazyPagingItems) => this extension function is removed with latest updates of the paging library : https://stackoverflow.com/questions/74917398/lazycolumn-error-lazypagingitemstypevariablet-required-but-found-listt
         items(
             count = lazyPagingItems.itemCount,
             key = lazyPagingItems.itemKey { it.id },
@@ -158,7 +156,7 @@ fun UnsplashImagePreview() {
             id = "1",
             urls = Urls(regular = ""),
             likes = 100,
-            user = User(username = "Stevdza-San", userLinks = UserLinks(html = ""))
+            user = User(username = "Satyam Tewari", userLinks = UserLinks(html = ""))
         )
     )
 }
