@@ -3,7 +3,7 @@ package com.example.ilmioristorante.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.ilmioristorante.data.remote.UnsplashApi
-import com.example.ilmioristorante.model.UnsplashImage
+import com.example.ilmioristorante.model.unsplash.UnsplashImage
 import com.example.ilmioristorante.util.Constants.ITEMS_PER_PAGE
 
 class SearchPagingSource(

@@ -7,8 +7,8 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.example.ilmioristorante.data.local.UnsplashDatabase
 import com.example.ilmioristorante.data.remote.UnsplashApi
-import com.example.ilmioristorante.model.UnsplashImage
-import com.example.ilmioristorante.model.UnsplashRemoteKeys
+import com.example.ilmioristorante.model.unsplash.UnsplashImage
+import com.example.ilmioristorante.model.unsplash.UnsplashRemoteKeys
 import com.example.ilmioristorante.util.Constants.ITEMS_PER_PAGE
 
 @ExperimentalPagingApi

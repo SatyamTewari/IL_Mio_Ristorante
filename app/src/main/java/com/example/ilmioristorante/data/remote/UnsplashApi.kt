@@ -1,8 +1,8 @@
 package com.example.ilmioristorante.data.remote
 
 import com.example.ilmioristorante.BuildConfig
-import com.example.ilmioristorante.model.SearchResults
-import com.example.ilmioristorante.model.UnsplashImage
+import com.example.ilmioristorante.model.unsplash.SearchResults
+import com.example.ilmioristorante.model.unsplash.UnsplashImage
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
