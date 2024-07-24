@@ -26,7 +26,7 @@ import com.example.ilmioristorante.presentation.screens.search.SearchScreen
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route
+        startDestination = Screen.Login.route
     ) {
         composable(route = Screen.Home.route) {
             HomeScreen(navController = navController)
