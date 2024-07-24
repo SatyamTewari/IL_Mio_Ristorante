@@ -1,8 +1,5 @@
 package com.example.ilmioristorante.presentation.screens.common
 
-import android.content.Intent
-import android.net.Uri
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,7 +19,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
@@ -38,8 +34,7 @@ import com.example.ilmioristorante.ui.theme.HeartRed
 
 @ExperimentalCoilApi
 @Composable
-fun ListContent(lazyPagingItems: LazyPagingItems<UnsplashImage>) {
-    Log.d("Error", lazyPagingItems.loadState.toString())
+fun ListContent(lazyPagingItems: LazyPagingItems<UnsplashImage>, onItemClicked: ((id: String) -> Unit)) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(all = 12.dp),
@@ -50,23 +45,24 @@ fun ListContent(lazyPagingItems: LazyPagingItems<UnsplashImage>) {
             key = lazyPagingItems.itemKey { it.id },
             contentType = lazyPagingItems.itemContentType { null }
         ) { index ->
-            lazyPagingItems[index]?.let { UnsplashItem(unsplashImage = it) }
+            lazyPagingItems[index]?.let { UnsplashItem(unsplashImage = it, onItemClicked) }
         }
     }
 }
 
 @ExperimentalCoilApi
 @Composable
-fun UnsplashItem(unsplashImage: UnsplashImage) {
+fun UnsplashItem(unsplashImage: UnsplashImage?, onItemClicked: ((id: String) -> Unit)) {
     val context = LocalContext.current
     Box(
         modifier = Modifier
             .clickable {
-                val browserIntent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://unsplash.com/@${unsplashImage.user.username}?utm_source=DemoApp&utm_medium=referral")
-                )
-                startActivity(context, browserIntent, null)
+                onItemClicked.invoke(unsplashImage?.id ?: "")
+//                val browserIntent = Intent(
+//                    Intent.ACTION_VIEW,
+//                    Uri.parse("https://unsplash.com/@${unsplashImage.user.username}?utm_source=DemoApp&utm_medium=referral")
+//                )
+//                startActivity(context, browserIntent, null)
             }
             .height(300.dp)
             .fillMaxWidth(),
@@ -74,7 +70,7 @@ fun UnsplashItem(unsplashImage: UnsplashImage) {
     ) {
         AsyncImage(
             model = ImageRequest.Builder(context)
-                .data(unsplashImage.urls.regular)
+                .data(unsplashImage?.urls?.regular)
                 .crossfade(true)
                 .build(),
             placeholder = painterResource(id = R.drawable.ic_placeholder),
@@ -101,7 +97,7 @@ fun UnsplashItem(unsplashImage: UnsplashImage) {
                 text = buildAnnotatedString {
                     append("Photo by ")
                     withStyle(style = SpanStyle(fontWeight = FontWeight.Black)) {
-                        append(unsplashImage.user.username)
+                        append(unsplashImage?.user?.username)
                     }
                     append(" on Unsplash")
                 },
@@ -113,7 +109,7 @@ fun UnsplashItem(unsplashImage: UnsplashImage) {
             LikeCounter(
                 modifier = Modifier.weight(3f),
                 painter = painterResource(id = R.drawable.ic_heart),
-                likes = "${unsplashImage.likes}"
+                likes = "${unsplashImage?.likes}"
             )
         }
     }
@@ -157,6 +153,6 @@ fun UnsplashImagePreview() {
             urls = Urls(regular = ""),
             likes = 100,
             user = User(username = "Satyam Tewari", userLinks = UserLinks(html = ""))
-        )
+        ), onItemClicked = {}
     )
 }

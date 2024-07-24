@@ -57,38 +57,6 @@ import com.example.ilmioristorante.ui.theme.GrayColor
 import com.example.ilmioristorante.ui.theme.TextColor
 import com.example.ilmioristorante.ui.theme.WhiteColor
 
-@Composable
-fun NormalTextComponent(value: String) {
-    Text(
-        text = value,
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = 40.dp),
-        style = TextStyle(
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Normal,
-            fontStyle = FontStyle.Normal
-        ), color = TextColor,
-        textAlign = TextAlign.Center
-    )
-}
-
-@Composable
-fun HeadingTextComponent(value: String) {
-    Text(
-        text = value,
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(),
-        style = TextStyle(
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
-            fontStyle = FontStyle.Normal
-        ), color = TextColor,
-        textAlign = TextAlign.Center
-    )
-}
-
 @ExperimentalMaterial3Api
 @Composable
 fun MyTextFieldComponent(

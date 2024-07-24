@@ -12,6 +12,7 @@ import com.example.ilmioristorante.presentation.screens.SignUp.SignupUIEvent
 import com.example.ilmioristorante.presentation.screens.SignUp.SignupUiState
 import com.example.ilmioristorante.util.Validator
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -70,7 +71,7 @@ class SignupViewModel @Inject constructor(
     }
 
     private fun signup() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO)  {
             val response = addUserDetailsUseCase.addUserDetails(_registrationUIState.value)
             if(response > 0){
                 _isUserSignupSuccess.value = response

@@ -18,4 +18,7 @@ interface UnsplashImageDao {
 
     @Query("DELETE FROM unsplash_image_table")
     suspend fun deleteAllImages()
+
+    @Query("SELECT * FROM unsplash_image_table WHERE id=:id")
+    suspend fun getUnsplashImageItem(id: String): UnsplashImage
 }

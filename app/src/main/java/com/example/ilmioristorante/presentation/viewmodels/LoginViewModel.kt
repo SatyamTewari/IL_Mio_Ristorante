@@ -14,6 +14,7 @@ import com.example.ilmioristorante.presentation.screens.login.LoginUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import com.example.ilmioristorante.util.Validator
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @ExperimentalPagingApi
@@ -57,7 +58,7 @@ class LoginViewModel @Inject constructor(
 
 
     private fun login() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO)  {
             val response = getUserDetailsUseCase.getUserDetail(_loginUiState.value.email, _loginUiState.value.password)
             if(response != null){
                 _isUserLoginSuccess.value = response

@@ -35,7 +35,9 @@ fun HomeScreen(
         },
         content = {
             Box(modifier = Modifier.padding(it)) {
-                ListContent(lazyPagingItems = getAllImages)
+                ListContent(lazyPagingItems = getAllImages, onItemClicked = {
+                    navController.navigate("${Screen.Detail.route}/$it")
+                })
             }
         }
     )

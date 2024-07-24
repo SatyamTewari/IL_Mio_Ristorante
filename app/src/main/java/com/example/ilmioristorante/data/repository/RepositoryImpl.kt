@@ -10,6 +10,7 @@ import com.example.ilmioristorante.data.paging.UnsplashRemoteMediator
 import com.example.ilmioristorante.data.remote.UnsplashApi
 import com.example.ilmioristorante.domain.Repository
 import com.example.ilmioristorante.model.client.User
+import com.example.ilmioristorante.model.reviews.UserReviews
 import com.example.ilmioristorante.model.unsplash.UnsplashImage
 import com.example.ilmioristorante.util.Constants.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow
@@ -49,5 +50,17 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun addUserDetails(user: User): Long {
         return unsplashDatabase.userDao().addUser(user)
+    }
+
+    override suspend fun getUnsplashItemById(id: String): UnsplashImage {
+        return unsplashDatabase.unsplashImageDao().getUnsplashImageItem(id)
+    }
+
+    override suspend fun addUserReview(review: UserReviews): Long {
+        return unsplashDatabase.userReviewDao().addUserReview(review)
+    }
+
+    override suspend fun getUserReview(id: String): UserReviews {
+        return unsplashDatabase.userReviewDao().getUserReview(id)
     }
 }

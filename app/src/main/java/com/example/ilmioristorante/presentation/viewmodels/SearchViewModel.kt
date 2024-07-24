@@ -10,6 +10,7 @@ import androidx.paging.cachedIn
 import com.example.ilmioristorante.domain.usecase.SearchImagesUseCase
 import com.example.ilmioristorante.model.unsplash.UnsplashImage
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -34,7 +35,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun searchHeroes(query: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO)  {
             searchImagesUseCase.searchImages(query).cachedIn(viewModelScope).collect{
                 _searchedImages.emit(it)
             }
