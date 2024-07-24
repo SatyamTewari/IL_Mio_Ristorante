@@ -19,6 +19,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -46,10 +47,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.ilmioristorante.ui.theme.Primary
-import com.example.ilmioristorante.ui.theme.Secondary
-import com.example.ilmioristorante.ui.theme.GrayColor
-import com.example.ilmioristorante.ui.theme.TextColor
 
 @ExperimentalMaterial3Api
 @Composable
@@ -68,9 +65,9 @@ fun MyTextFieldComponent(
             .fillMaxWidth(),
         label = { Text(text = labelValue) },
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = Primary,
-            focusedLabelColor = Primary,
-            cursorColor = Primary,
+            focusedBorderColor = MaterialTheme.colorScheme.onSecondary,
+            focusedLabelColor = MaterialTheme.colorScheme.onSecondary,
+            cursorColor = MaterialTheme.colorScheme.onSecondary,
         ),
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         singleLine = true,
@@ -110,9 +107,9 @@ fun PasswordTextFieldComponent(
             .fillMaxWidth(),
         label = { Text(text = labelValue) },
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = Primary,
-            focusedLabelColor = Primary,
-            cursorColor = Primary,
+            focusedBorderColor = MaterialTheme.colorScheme.onSecondary,
+            focusedLabelColor = MaterialTheme.colorScheme.onSecondary,
+            cursorColor = MaterialTheme.colorScheme.onSecondary,
         ),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password,
@@ -155,7 +152,7 @@ fun ButtonComponent(value: String, onButtonClicked: () -> Unit, isEnabled: Boole
                 .fillMaxWidth()
                 .heightIn(48.dp)
                 .background(
-                    brush = Brush.horizontalGradient(listOf(Secondary, Primary)),
+                    brush = Brush.horizontalGradient(listOf(MaterialTheme.colorScheme.onTertiary, MaterialTheme.colorScheme.onSecondary)),
                     shape = RoundedCornerShape(50.dp)
                 ),
             contentAlignment = Alignment.Center
@@ -183,7 +180,7 @@ fun DividerTextComponent() {
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
-            color = GrayColor,
+            color = MaterialTheme.colorScheme.tertiary,
             thickness = 1.dp
         )
 
@@ -191,13 +188,13 @@ fun DividerTextComponent() {
             modifier = Modifier.padding(8.dp),
             text = "or",
             fontSize = 18.sp,
-            color = TextColor
+            color = MaterialTheme.colorScheme.onPrimary
         )
         Divider(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
-            color = GrayColor,
+            color = MaterialTheme.colorScheme.tertiary,
             thickness = 1.dp
         )
     }
@@ -211,8 +208,11 @@ fun ClickableLoginTextComponent(tryingToLogin: Boolean = true, onTextSelected: (
     val loginText = if (tryingToLogin) "Login" else "Register"
 
     val annotatedString = buildAnnotatedString {
-        append(initialText)
-        withStyle(style = SpanStyle(color = Primary)) {
+        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onPrimary)) {
+            pushStringAnnotation(tag = initialText, annotation = initialText)
+            append(initialText)
+        }
+        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onSecondary)) {
             pushStringAnnotation(tag = loginText, annotation = loginText)
             append(loginText)
         }
@@ -259,7 +259,7 @@ fun UnderLinedTextComponent(value: String) {
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
             fontStyle = FontStyle.Normal
-        ), color = GrayColor,
+        ), color = MaterialTheme.colorScheme.tertiary,
         textAlign = TextAlign.Center,
         textDecoration = TextDecoration.Underline
     )

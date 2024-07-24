@@ -3,6 +3,7 @@ package com.example.ilmioristorante.presentation.composables.common
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,8 +42,8 @@ import com.example.ilmioristorante.model.restaurant.RestaurantModel
 import com.example.ilmioristorante.model.restaurant.Urls
 import com.example.ilmioristorante.model.restaurant.User
 import com.example.ilmioristorante.model.restaurant.UserLinks
-import com.example.ilmioristorante.ui.theme.BlueColor
-import com.example.ilmioristorante.ui.theme.WhiteColor
+import com.example.ilmioristorante.ui.theme.ILMioRistoranteTheme
+import com.example.ilmioristorante.ui.theme.RestaurantColors.BlueColor
 import com.example.ilmioristorante.util.Screen
 
 @ExperimentalCoilApi
@@ -97,26 +98,28 @@ fun RestaurantItem(
             modifier = Modifier
                 .height(40.dp)
                 .fillMaxWidth()
-                .padding(horizontal = 6.dp),
+                .background(MaterialTheme.colorScheme.primary),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = buildAnnotatedString {
-                    append("Photo by ")
+                    withStyle(style = SpanStyle(fontWeight = FontWeight.Light)) {
+                        append("Photo by ")
+                    }
                     withStyle(style = SpanStyle(fontWeight = FontWeight.Black)) {
                         append(restaurant?.user?.username)
                     }
                 },
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.primaryContainer,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
             Icon(
                 imageVector = Icons.Filled.ThumbUp,
                 contentDescription = "Dislike Icon",
-                tint = if(dislikeStatus) BlueColor else WhiteColor,
+                tint = if(dislikeStatus) BlueColor else MaterialTheme.colorScheme.primaryContainer,
                 modifier = Modifier
                     .padding(end = 10.dp)
                     .rotate(180f)
@@ -146,11 +149,13 @@ fun RestaurantItem(
 @Composable
 @Preview
 fun RestaurantItemPreview() {
-    RestaurantItem(
-        restaurant = RestaurantModel(
-            id = "1",
-            urls = Urls(regular = ""),
-            user = User(username = "Satyam Tewari", userLinks = UserLinks(html = ""))
-        ), source = Screen.Home, dislikeStatus = true
-    )
+    ILMioRistoranteTheme {
+        RestaurantItem(
+            restaurant = RestaurantModel(
+                id = "1",
+                urls = Urls(regular = ""),
+                user = User(username = "Satyam Tewari", userLinks = UserLinks(html = ""))
+            ), source = Screen.Home, dislikeStatus = false
+        )
+    }
 }
