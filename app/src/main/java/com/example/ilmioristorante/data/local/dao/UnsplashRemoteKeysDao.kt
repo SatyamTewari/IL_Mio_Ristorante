@@ -15,7 +15,8 @@ interface UnsplashRemoteKeysDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addAllRemoteKeys(remoteKeys: List<UnsplashRemoteKeys>)
 
-    @Query("DELETE FROM unsplash_remote_keys_table")
-    suspend fun deleteAllRemoteKeys()
+    /** not using for now but support added for future use-case */
+//    @Query("DELETE FROM unsplash_remote_keys_table")
+//    suspend fun deleteAllRemoteKeys()
 
 }

@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.ilmioristorante.domain.usecase.SearchImagesUseCase
+import com.example.ilmioristorante.domain.usecase.SearchRestaurantUseCase
 import com.example.ilmioristorante.model.unsplash.UnsplashImage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +19,7 @@ import javax.inject.Inject
 @ExperimentalPagingApi
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchImagesUseCase: SearchImagesUseCase,
+    private val searchRestaurantUseCase: SearchRestaurantUseCase,
 ): ViewModel() {
 
     private val _searchQuery = mutableStateOf("")
@@ -34,9 +34,9 @@ class SearchViewModel @Inject constructor(
         _searchQuery.value = query
     }
 
-    fun searchHeroes(query: String) {
+    fun searchRestaurants(query: String) {
         viewModelScope.launch(Dispatchers.IO)  {
-            searchImagesUseCase.searchImages(query).cachedIn(viewModelScope).collect{
+            searchRestaurantUseCase.searchRestaurant(query).cachedIn(viewModelScope).collect{
                 _searchedImages.emit(it)
             }
         }

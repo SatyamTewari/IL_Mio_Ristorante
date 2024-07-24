@@ -14,7 +14,8 @@ import com.example.ilmioristorante.util.Constants.ITEMS_PER_PAGE
 @ExperimentalPagingApi
 class UnsplashRemoteMediator(
     private val unsplashApi: UnsplashApi,
-    private val unsplashDatabase: UnsplashDatabase
+    private val unsplashDatabase: UnsplashDatabase,
+    private val query: String,
 ) : RemoteMediator<Int, UnsplashImage>() {
 
     private val unsplashImageDao = unsplashDatabase.unsplashImageDao()
@@ -50,26 +51,37 @@ class UnsplashRemoteMediator(
                 }
             }
 
-            val response = unsplashApi.getAllImages(page = currentPage, perPage = ITEMS_PER_PAGE)
-            val endOfPaginationReached = response.isEmpty()
+            val response = unsplashApi.searchImages(
+                query = query,
+                page = currentPage,
+                perPage = ITEMS_PER_PAGE
+            )
+            val endOfPaginationReached = response.images.isEmpty()
 
             val prevPage = if (currentPage == 1) null else currentPage - 1
             val nextPage = if (endOfPaginationReached) null else currentPage + 1
 
             unsplashDatabase.withTransaction {
-                if (loadType == LoadType.REFRESH) {
-                    unsplashImageDao.deleteAllImages()
-                    unsplashRemoteKeysDao.deleteAllRemoteKeys()
-                }
-                val keys = response.map { unsplashImage ->
+
+                val keys = response.images.map { unsplashImage ->
                     UnsplashRemoteKeys(
                         id = unsplashImage.id,
                         prevPage = prevPage,
                         nextPage = nextPage
                     )
                 }
+
+                val images = response.images.map { unsplashImage ->
+                    UnsplashImage(
+                        id = unsplashImage.id,
+                        urls = unsplashImage.urls,
+                        user = unsplashImage.user,
+                        query = query
+                    )
+                }
+
                 unsplashRemoteKeysDao.addAllRemoteKeys(remoteKeys = keys)
-                unsplashImageDao.addImages(images = response)
+                unsplashImageDao.addImages(images = images)
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Exception) {

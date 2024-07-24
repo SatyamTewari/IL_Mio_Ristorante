@@ -5,13 +5,14 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.ilmioristorante.data.local.UnsplashDatabase
-import com.example.ilmioristorante.data.paging.SearchPagingSource
 import com.example.ilmioristorante.data.paging.UnsplashRemoteMediator
 import com.example.ilmioristorante.data.remote.UnsplashApi
 import com.example.ilmioristorante.domain.Repository
 import com.example.ilmioristorante.model.client.User
 import com.example.ilmioristorante.model.reviews.UserReviews
+import com.example.ilmioristorante.model.unsplash.DislikedRestaurants
 import com.example.ilmioristorante.model.unsplash.UnsplashImage
+import com.example.ilmioristorante.util.Constants.INITIAL_LOAD_MULTIPLIER
 import com.example.ilmioristorante.util.Constants.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -25,21 +26,21 @@ class RepositoryImpl @Inject constructor(
     override fun getAllImages(): Flow<PagingData<UnsplashImage>> {
         val pagingSourceFactory = { unsplashDatabase.unsplashImageDao().getAllImages() }
         return Pager(
-            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
-            remoteMediator = UnsplashRemoteMediator(
-                unsplashApi = unsplashApi,
-                unsplashDatabase = unsplashDatabase
-            ),
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE, initialLoadSize = ITEMS_PER_PAGE * INITIAL_LOAD_MULTIPLIER),
             pagingSourceFactory = pagingSourceFactory
         ).flow
     }
 
-    override fun searchImages(query: String): Flow<PagingData<UnsplashImage>> {
+    override fun searchRestaurant(query: String): Flow<PagingData<UnsplashImage>> {
+        val pagingSourceFactory = { unsplashDatabase.unsplashImageDao().getSearchedRestaurant(query) }
         return Pager(
-            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
-            pagingSourceFactory = {
-                SearchPagingSource(unsplashApi = unsplashApi, query = query)
-            }
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE, initialLoadSize = ITEMS_PER_PAGE * INITIAL_LOAD_MULTIPLIER),
+            pagingSourceFactory = pagingSourceFactory,
+            remoteMediator = UnsplashRemoteMediator(
+                unsplashApi = unsplashApi,
+                unsplashDatabase = unsplashDatabase,
+                query = query
+            ),
         ).flow
     }
 
@@ -62,5 +63,13 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getUserReview(id: String): UserReviews {
         return unsplashDatabase.userReviewDao().getUserReview(id)
+    }
+
+    override suspend fun addDislikedRestaurant(dislikedRestaurants: DislikedRestaurants): Long {
+        return unsplashDatabase.dislikedRestaurantsDao().addDislikedRestaurant(dislikedRestaurants)
+    }
+
+    override suspend fun deleteDislikedRestaurant(id: String): Int {
+        return unsplashDatabase.dislikedRestaurantsDao().deleteDislikedRestaurant(id)
     }
 }

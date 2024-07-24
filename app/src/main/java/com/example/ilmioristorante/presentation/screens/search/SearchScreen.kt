@@ -11,7 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
-import com.example.ilmioristorante.presentation.navigation.Screen
+import com.example.ilmioristorante.util.Screen
 import com.example.ilmioristorante.presentation.screens.common.ListContent
 import com.example.ilmioristorante.presentation.viewmodels.SearchViewModel
 
@@ -34,7 +34,7 @@ fun SearchScreen(
                     searchViewModel.updateSearchQuery(query = it)
                 },
                 onSearchClicked = {
-                    searchViewModel.searchHeroes(query = it)
+                    searchViewModel.searchRestaurants(query = it)
                 },
                 onCloseClicked = {
                     navController.popBackStack()
@@ -43,7 +43,7 @@ fun SearchScreen(
         },
         content = {
             Box(modifier = Modifier.padding(it)) {
-                ListContent(lazyPagingItems = searchedImages, onItemClicked = {
+                ListContent(lazyPagingItems = searchedImages, source = Screen.Search, onItemClicked = {
                     navController.navigate("${Screen.Detail.route}/$it")
                 })
             }

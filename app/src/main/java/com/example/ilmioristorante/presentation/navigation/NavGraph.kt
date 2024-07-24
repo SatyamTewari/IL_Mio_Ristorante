@@ -9,15 +9,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.paging.ExperimentalPagingApi
 import coil.annotation.ExperimentalCoilApi
-import com.example.ilmioristorante.model.unsplash.UnsplashImage
-import com.example.ilmioristorante.model.unsplash.Urls
-import com.example.ilmioristorante.model.unsplash.User
-import com.example.ilmioristorante.model.unsplash.UserLinks
 import com.example.ilmioristorante.presentation.screens.SignUp.SignUpScreen
 import com.example.ilmioristorante.presentation.screens.detail.DetailScreen
 import com.example.ilmioristorante.presentation.screens.home.HomeScreen
 import com.example.ilmioristorante.presentation.screens.login.LoginScreen
 import com.example.ilmioristorante.presentation.screens.search.SearchScreen
+import com.example.ilmioristorante.util.Screen
 
 @ExperimentalPagingApi
 @ExperimentalCoilApi

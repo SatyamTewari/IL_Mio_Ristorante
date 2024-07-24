@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation.navigation
+package com.example.ilmioristorante.util
 
 sealed class Screen(val route: String) {
     object Home: Screen("home_screen")

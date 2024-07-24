@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation
+package com.example.ilmioristorante.presentation.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

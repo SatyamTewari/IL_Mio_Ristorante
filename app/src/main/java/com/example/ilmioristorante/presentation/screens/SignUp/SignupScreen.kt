@@ -17,7 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.ExperimentalPagingApi
 import com.example.ilmioristorante.R
-import com.example.ilmioristorante.presentation.navigation.Screen
+import com.example.ilmioristorante.util.Screen
 import com.example.ilmioristorante.presentation.screens.common.ButtonComponent
 import com.example.ilmioristorante.presentation.screens.common.ClickableLoginTextComponent
 import com.example.ilmioristorante.presentation.screens.common.DividerTextComponent

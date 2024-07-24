@@ -53,7 +53,7 @@ fun SearchWidget(
             onValueChange = { onTextChange(it) },
             placeholder = {
                 Text(
-                    text = "Search here...",
+                    text = "Enter city name.",
                     color = Color.Black
                 )
             },
