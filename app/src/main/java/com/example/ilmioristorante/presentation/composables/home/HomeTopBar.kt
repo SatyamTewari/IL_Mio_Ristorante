@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation.screens.home
+package com.example.ilmioristorante.presentation.composables.home
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search

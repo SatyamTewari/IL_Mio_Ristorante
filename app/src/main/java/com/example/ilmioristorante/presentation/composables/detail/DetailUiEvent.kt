@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation.screens.detail
+package com.example.ilmioristorante.presentation.composables.detail
 
 sealed class DetailUiEvent{
 

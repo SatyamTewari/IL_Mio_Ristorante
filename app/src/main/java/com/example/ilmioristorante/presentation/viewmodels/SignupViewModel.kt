@@ -1,15 +1,13 @@
 package com.example.ilmioristorante.presentation.viewmodels
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import com.example.ilmioristorante.domain.usecase.AddUserDetailsUseCase
-import com.example.ilmioristorante.model.client.User
-import com.example.ilmioristorante.presentation.screens.SignUp.SignupUIEvent
-import com.example.ilmioristorante.presentation.screens.SignUp.SignupUiState
+import com.example.ilmioristorante.presentation.composables.SignUp.SignupUIEvent
+import com.example.ilmioristorante.presentation.composables.SignUp.SignupUiState
 import com.example.ilmioristorante.util.Validator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

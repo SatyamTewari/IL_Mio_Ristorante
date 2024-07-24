@@ -9,8 +9,8 @@ import com.example.ilmioristorante.domain.usecase.AddUserReviewUseCase
 import com.example.ilmioristorante.domain.usecase.DeleteDislikedRestaurantUseCase
 import com.example.ilmioristorante.domain.usecase.GetReviewUseCase
 import com.example.ilmioristorante.domain.usecase.GetRestaurantItemByIdUseCase
-import com.example.ilmioristorante.presentation.screens.detail.DetailUiEvent
-import com.example.ilmioristorante.presentation.screens.detail.DetailUiState
+import com.example.ilmioristorante.presentation.composables.detail.DetailUiEvent
+import com.example.ilmioristorante.presentation.composables.detail.DetailUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

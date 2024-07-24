@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation.screens.search
+package com.example.ilmioristorante.presentation.composables.search
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -12,7 +12,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import com.example.ilmioristorante.util.Screen
-import com.example.ilmioristorante.presentation.screens.common.ListContent
+import com.example.ilmioristorante.presentation.composables.common.ListContent
 import com.example.ilmioristorante.presentation.viewmodels.SearchViewModel
 
 @ExperimentalPagingApi

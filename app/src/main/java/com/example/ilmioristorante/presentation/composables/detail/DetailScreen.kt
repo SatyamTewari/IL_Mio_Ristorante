@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation.screens.detail
+package com.example.ilmioristorante.presentation.composables.detail
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,10 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.ilmioristorante.presentation.screens.common.ButtonComponent
-import com.example.ilmioristorante.presentation.screens.common.NormalTextComponent
-import com.example.ilmioristorante.presentation.screens.common.SmallTextComponent
-import com.example.ilmioristorante.presentation.screens.common.RestaurantItem
+import com.example.ilmioristorante.presentation.composables.common.ButtonComponent
+import com.example.ilmioristorante.presentation.composables.common.NormalTextComponent
+import com.example.ilmioristorante.presentation.composables.common.SmallTextComponent
+import com.example.ilmioristorante.presentation.composables.common.RestaurantItem
 import com.example.ilmioristorante.presentation.viewmodels.DetailVIewModel
 import com.example.ilmioristorante.util.Screen
 

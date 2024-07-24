@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation.screens.SignUp
+package com.example.ilmioristorante.presentation.composables.SignUp
 
 data class SignupUiState(
     var firstName :String = "",

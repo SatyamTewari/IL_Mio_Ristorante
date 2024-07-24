@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation.screens.SignUp
+package com.example.ilmioristorante.presentation.composables.SignUp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -18,13 +18,13 @@ import androidx.navigation.NavHostController
 import androidx.paging.ExperimentalPagingApi
 import com.example.ilmioristorante.R
 import com.example.ilmioristorante.util.Screen
-import com.example.ilmioristorante.presentation.screens.common.ButtonComponent
-import com.example.ilmioristorante.presentation.screens.common.ClickableLoginTextComponent
-import com.example.ilmioristorante.presentation.screens.common.DividerTextComponent
-import com.example.ilmioristorante.presentation.screens.common.HeadingTextComponent
-import com.example.ilmioristorante.presentation.screens.common.MyTextFieldComponent
-import com.example.ilmioristorante.presentation.screens.common.NormalTextComponent
-import com.example.ilmioristorante.presentation.screens.common.PasswordTextFieldComponent
+import com.example.ilmioristorante.presentation.composables.common.ButtonComponent
+import com.example.ilmioristorante.presentation.composables.common.ClickableLoginTextComponent
+import com.example.ilmioristorante.presentation.composables.common.DividerTextComponent
+import com.example.ilmioristorante.presentation.composables.common.HeadingTextComponent
+import com.example.ilmioristorante.presentation.composables.common.MyTextFieldComponent
+import com.example.ilmioristorante.presentation.composables.common.NormalTextComponent
+import com.example.ilmioristorante.presentation.composables.common.PasswordTextFieldComponent
 import com.example.ilmioristorante.presentation.viewmodels.SignupViewModel
 
 @ExperimentalPagingApi

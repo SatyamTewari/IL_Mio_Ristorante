@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation.screens.login
+package com.example.ilmioristorante.presentation.composables.login
 
 data class LoginUiState(
     var email  :String = "",

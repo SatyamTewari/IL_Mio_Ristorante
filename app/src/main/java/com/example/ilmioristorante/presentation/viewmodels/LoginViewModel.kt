@@ -1,16 +1,14 @@
 package com.example.ilmioristorante.presentation.viewmodels
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
-import com.example.ilmioristorante.domain.Repository
 import com.example.ilmioristorante.domain.usecase.GetUserDetailsUseCase
 import com.example.ilmioristorante.model.client.User
-import com.example.ilmioristorante.presentation.screens.login.LoginUIEvent
-import com.example.ilmioristorante.presentation.screens.login.LoginUiState
+import com.example.ilmioristorante.presentation.composables.login.LoginUIEvent
+import com.example.ilmioristorante.presentation.composables.login.LoginUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import com.example.ilmioristorante.util.Validator

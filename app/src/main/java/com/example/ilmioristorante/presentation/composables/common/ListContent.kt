@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.presentation.screens.common
+package com.example.ilmioristorante.presentation.composables.common
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
