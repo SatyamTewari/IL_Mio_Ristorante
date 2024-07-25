@@ -35,9 +35,16 @@ fun HomeScreen(
         },
         content = {
             Box(modifier = Modifier.padding(it)) {
-                ListContent(lazyPagingItems = getAllImages, source = Screen.Home, onItemClicked = {
-                    navController.navigate("${Screen.Detail.route}/$it")
-                })
+                if(getAllImages.itemCount > 0) {
+                    ListContent(
+                        lazyPagingItems = getAllImages,
+                        source = Screen.Home,
+                        onItemClicked = {
+                            navController.navigate("${Screen.Detail.route}/$it")
+                        })
+                } else {
+                    HomeEmptyListComponent()
+                }
             }
         }
     )
