@@ -16,7 +16,7 @@ interface RestaurantApi {
 //        @Query("per_page") perPage: Int
 //    ): List<RestaurantModel>
 
-    @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
+//    @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
     @GET("/search/photos")
     suspend fun searchImages(
         @Query("query") query: String,
