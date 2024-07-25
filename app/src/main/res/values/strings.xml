@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">IL Mio Ristorante</string>
-    <string name="hide_password">Hide password</string>
-    <string name="show_password">Show password</string>
 </resources>
