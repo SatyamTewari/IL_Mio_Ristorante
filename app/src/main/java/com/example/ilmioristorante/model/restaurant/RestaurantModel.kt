@@ -3,7 +3,7 @@ package com.example.ilmioristorante.model.restaurant
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.ilmioristorante.util.Constants.RESTAURANTS_TABLE
+import com.example.ilmioristorante.data.util.Constants.RESTAURANTS_TABLE
 import kotlinx.serialization.Serializable
 
 @Serializable

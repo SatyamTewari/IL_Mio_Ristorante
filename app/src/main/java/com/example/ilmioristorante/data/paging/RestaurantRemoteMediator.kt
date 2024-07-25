@@ -9,7 +9,7 @@ import com.example.ilmioristorante.data.local.RestaurantDatabase
 import com.example.ilmioristorante.data.remote.RestaurantApi
 import com.example.ilmioristorante.model.restaurant.RestaurantModel
 import com.example.ilmioristorante.model.remoteKeys.RestaurantRemoteKeys
-import com.example.ilmioristorante.util.Constants.ITEMS_PER_PAGE
+import com.example.ilmioristorante.data.util.Constants.ITEMS_PER_PAGE
 
 @ExperimentalPagingApi
 class RestaurantRemoteMediator(

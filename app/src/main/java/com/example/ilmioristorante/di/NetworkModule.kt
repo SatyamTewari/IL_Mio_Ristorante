@@ -1,7 +1,7 @@
 package com.example.ilmioristorante.di
 
 import com.example.ilmioristorante.data.remote.RestaurantApi
-import com.example.ilmioristorante.util.Constants.BASE_URL
+import com.example.ilmioristorante.data.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides

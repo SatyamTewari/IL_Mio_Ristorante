@@ -3,7 +3,7 @@ package com.example.ilmioristorante.di
 import android.content.Context
 import androidx.room.Room
 import com.example.ilmioristorante.data.local.RestaurantDatabase
-import com.example.ilmioristorante.util.Constants.RESTAURANT_DATABASE
+import com.example.ilmioristorante.data.util.Constants.RESTAURANT_DATABASE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

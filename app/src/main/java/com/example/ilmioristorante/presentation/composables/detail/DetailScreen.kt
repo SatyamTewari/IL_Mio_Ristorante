@@ -20,7 +20,7 @@ import com.example.ilmioristorante.presentation.composables.common.NormalTextCom
 import com.example.ilmioristorante.presentation.composables.common.SmallTextComponent
 import com.example.ilmioristorante.presentation.composables.common.RestaurantItem
 import com.example.ilmioristorante.presentation.viewmodels.DetailVIewModel
-import com.example.ilmioristorante.util.Screen
+import com.example.ilmioristorante.presentation.util.Screen
 
 @Composable
 fun DetailScreen(

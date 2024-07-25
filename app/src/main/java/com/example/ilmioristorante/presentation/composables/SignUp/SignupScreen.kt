@@ -17,7 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.ExperimentalPagingApi
 import com.example.ilmioristorante.R
-import com.example.ilmioristorante.util.Screen
+import com.example.ilmioristorante.presentation.util.Screen
 import com.example.ilmioristorante.presentation.composables.common.ButtonComponent
 import com.example.ilmioristorante.presentation.composables.common.ClickableLoginTextComponent
 import com.example.ilmioristorante.presentation.composables.common.DividerTextComponent
@@ -25,6 +25,7 @@ import com.example.ilmioristorante.presentation.composables.common.HeadingTextCo
 import com.example.ilmioristorante.presentation.composables.common.MyTextFieldComponent
 import com.example.ilmioristorante.presentation.composables.common.NormalTextComponent
 import com.example.ilmioristorante.presentation.composables.common.PasswordTextFieldComponent
+import com.example.ilmioristorante.presentation.util.PreferencesHelper
 import com.example.ilmioristorante.presentation.viewmodels.SignupViewModel
 
 @ExperimentalPagingApi
@@ -34,10 +35,13 @@ fun SignUpScreen(
     navController: NavHostController,
     signupViewModel: SignupViewModel = hiltViewModel()
 ) {
-
+    val context = LocalContext.current
+    val preferencesHelper = PreferencesHelper(context)
     val signupStatus = signupViewModel.isUserSignupSuccess
+
     LaunchedEffect(signupStatus.value) {
         if (signupStatus.value > 0) {
+            preferencesHelper.saveLoginState(true)
             navController.navigate(Screen.Home.route) {
                 popUpTo(Screen.Signup.route) { inclusive = true }
             }

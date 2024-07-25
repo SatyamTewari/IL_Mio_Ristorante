@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.util
+package com.example.ilmioristorante.data.util
 
 object Constants {
 
@@ -10,7 +10,6 @@ object Constants {
     const val USER_TABLE = "user_table"
     const val USER_REVIEW_TABLE = "user_review_table"
     const val DISLIKED_RESTAURANTS_TABLE = "disliked_restaurant_table"
-    const val RESTAURANT_API_QUERY_PREFIX = "hotel"
     const val ITEMS_PER_PAGE = 20
     const val INITIAL_LOAD_MULTIPLIER = 2
 }

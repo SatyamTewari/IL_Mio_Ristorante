@@ -11,7 +11,7 @@ import com.example.ilmioristorante.presentation.composables.login.LoginUIEvent
 import com.example.ilmioristorante.presentation.composables.login.LoginUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import com.example.ilmioristorante.util.Validator
+import com.example.ilmioristorante.presentation.util.Validator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

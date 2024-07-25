@@ -44,7 +44,7 @@ import com.example.ilmioristorante.model.restaurant.User
 import com.example.ilmioristorante.model.restaurant.UserLinks
 import com.example.ilmioristorante.ui.theme.ILMioRistoranteTheme
 import com.example.ilmioristorante.ui.theme.RestaurantColors.BlueColor
-import com.example.ilmioristorante.util.Screen
+import com.example.ilmioristorante.presentation.util.Screen
 
 @ExperimentalCoilApi
 @Composable

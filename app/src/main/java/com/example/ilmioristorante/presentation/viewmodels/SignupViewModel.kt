@@ -8,7 +8,7 @@ import androidx.paging.ExperimentalPagingApi
 import com.example.ilmioristorante.domain.usecase.AddUserDetailsUseCase
 import com.example.ilmioristorante.presentation.composables.SignUp.SignupUIEvent
 import com.example.ilmioristorante.presentation.composables.SignUp.SignupUiState
-import com.example.ilmioristorante.util.Validator
+import com.example.ilmioristorante.presentation.util.Validator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

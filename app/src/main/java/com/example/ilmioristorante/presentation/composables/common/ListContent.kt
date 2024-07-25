@@ -10,7 +10,7 @@ import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import coil.annotation.ExperimentalCoilApi
 import com.example.ilmioristorante.model.restaurant.RestaurantModel
-import com.example.ilmioristorante.util.Screen
+import com.example.ilmioristorante.presentation.util.Screen
 
 @ExperimentalCoilApi
 @Composable

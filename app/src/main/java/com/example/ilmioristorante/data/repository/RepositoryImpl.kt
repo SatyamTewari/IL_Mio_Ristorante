@@ -12,8 +12,8 @@ import com.example.ilmioristorante.model.client.User
 import com.example.ilmioristorante.model.reviews.UserReviews
 import com.example.ilmioristorante.model.restaurant.DislikedRestaurants
 import com.example.ilmioristorante.model.restaurant.RestaurantModel
-import com.example.ilmioristorante.util.Constants.INITIAL_LOAD_MULTIPLIER
-import com.example.ilmioristorante.util.Constants.ITEMS_PER_PAGE
+import com.example.ilmioristorante.data.util.Constants.INITIAL_LOAD_MULTIPLIER
+import com.example.ilmioristorante.data.util.Constants.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

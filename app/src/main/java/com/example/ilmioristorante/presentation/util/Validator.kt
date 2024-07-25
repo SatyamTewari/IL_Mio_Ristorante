@@ -1,4 +1,4 @@
-package com.example.ilmioristorante.util
+package com.example.ilmioristorante.presentation.util
 
 object Validator {
 
