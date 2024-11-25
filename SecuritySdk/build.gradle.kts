@@ -42,16 +42,14 @@ android {
     ndkVersion = "28.0.12674087"
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
-                afterEvaluate {
-                    from(components["release"])
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            afterEvaluate {
+                from(components["release"])
 //                groupId = "com.github.SatyamTewari"
 //                artifactId = "securitysdk"
 //                version = "1.0.0"
-                }
             }
         }
     }
