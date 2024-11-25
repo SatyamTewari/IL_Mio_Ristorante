@@ -1,6 +1,8 @@
 package com.example.ilmioristorante.di
 
+import EncryptionInterceptor
 import com.example.ilmioristorante.BuildConfig
+import com.example.ilmioristorante.data.remote.AuthenticationInterceptor
 import com.example.ilmioristorante.data.remote.RestaurantApi
 import com.example.ilmioristorante.data.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -29,6 +31,7 @@ object NetworkModule {
             .readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
             .addInterceptor(AuthenticationInterceptor())
+            .addInterceptor(EncryptionInterceptor())
             .build()
     }
 
@@ -51,13 +54,5 @@ object NetworkModule {
     @Singleton
     fun provideRestaurantApi(retrofit: Retrofit): RestaurantApi {
         return retrofit.create(RestaurantApi::class.java)
-    }
-}
-
-class AuthenticationInterceptor : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val originalRequest = chain.request()
-        val newRequest = originalRequest.newBuilder().addHeader("Authorization", "Client-ID ${BuildConfig.API_KEY}").build()
-        return chain.proceed(newRequest)
     }
 }

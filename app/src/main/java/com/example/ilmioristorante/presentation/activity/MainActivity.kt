@@ -15,6 +15,7 @@ import androidx.paging.ExperimentalPagingApi
 import coil.annotation.ExperimentalCoilApi
 import com.example.ilmioristorante.presentation.navigation.SetupNavGraph
 import com.example.ilmioristorante.ui.theme.ILMioRistoranteTheme
+import com.example.securitysdk.security.EncryptionManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagingApi
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        EncryptionManager.getSecurityToken(mutableMapOf())
         setContent {
             ILMioRistoranteTheme {
                 val navController = rememberNavController()

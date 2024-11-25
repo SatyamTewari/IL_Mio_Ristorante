@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "IL Mio Ristorante"
 include(":app")
- 
+include(":SecuritySdk")
