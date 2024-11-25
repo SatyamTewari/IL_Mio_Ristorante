@@ -48,9 +48,9 @@ afterEvaluate {
             register<MavenPublication>("release") {
                 afterEvaluate {
                     from(components["release"])
-                groupId = "com.github.SatyamTewari"
-                artifactId = "securitysdk"
-                version = "1.0.0"
+//                groupId = "com.github.SatyamTewari"
+//                artifactId = "securitysdk"
+//                version = "1.0.0"
                 }
             }
         }
